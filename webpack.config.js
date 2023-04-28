@@ -1,5 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 export default {
   mode: process.env.NODE_ENV || 'development',
@@ -15,6 +16,7 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
+    new ESLintPlugin()
   ],
   module: {
     rules: [
