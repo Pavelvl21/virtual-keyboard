@@ -1,5 +1,6 @@
 
 import locales from '../locales/locales';
+console.log(locales)
 import {
   handleBackspace,
   handleDel,
