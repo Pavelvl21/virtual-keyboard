@@ -54,4 +54,4 @@ const ru = {
   },
 };
 
-export default ru.js;
+export default ru;
