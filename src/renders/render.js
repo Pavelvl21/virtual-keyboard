@@ -39,20 +39,35 @@ const render = (state, keyboard) => {
 
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
+  textField.focus()
 
 
-  const { pressedKey: { code }, lang, isCapsLock, isShifted } = state;
+  const { pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys } = state;
 
 
   buttons.forEach((btn) => {
     const key = getKey(btn.id, lang, isCapsLock, isShifted);
     btn.textContent = key;
+    btn.classList.remove('active')
   });
 
+  const keys = [...pressedKeys];
+  
+  keys.forEach((key) => {
+    const btn = keyboard.querySelector(`#${key}`);
+    btn.classList.add('active')
+  })
+
+ 
   const { services } = locales;
 
   const char = getKey(code, lang, isCapsLock, isShifted) ?? '';
-  const value = !services.hasOwnProperty(code) ? char : ''
+  const value = !services.hasOwnProperty(code) ? char : '';
+
+  const caps = keyboard.querySelector('#CapsLock');
+
+
+  isCapsLock ? caps.classList.add('higlight') : caps.classList.remove('higlight')
 
 
   const {
