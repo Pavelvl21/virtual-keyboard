@@ -1,11 +1,14 @@
 import './assets/style.css';
 import render from './renders/render';
+import renderField from './renders/renderField';
 import keyboard from './components/keyboard';
 
 const { body } = document;
 body.append(keyboard);
 
 const board = keyboard.querySelector('.board');
+const closeBtn = keyboard.querySelector('.wrapper-button');
+const field = keyboard.querySelector('.wrapper');
 
 const state = {
   lang: 'en',
@@ -13,7 +16,13 @@ const state = {
   pressedKeys: new Set(),
   isCapsLock: false,
   isShifted: false,
+  isOpen: true,
 };
+
+closeBtn.addEventListener('click', () => {
+  state.isOpen = !state.isOpen;
+  renderField(state, field)
+})
 
 body.addEventListener('keydown', (event) => {
   event.preventDefault();
