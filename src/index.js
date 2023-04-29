@@ -79,6 +79,7 @@ board.addEventListener('click', (event) => {
   const { target } = event;
   const key = target.textContent;
   const code = target.id;
+  console.log(code)
   state.pressedKey = { code, key };
   const capsLock = code === 'CapsLock' && !event.repeat;
 
@@ -86,15 +87,26 @@ board.addEventListener('click', (event) => {
     state.isCapsLock = !state.isCapsLock;
   }
 
+  const altShift = state.isShifted && code === 'AltLeft' || state.isShifted && code === 'AltRight';
+  const ctrlShift = state.isShifted && code === 'ControlLeft' || state.isShifted && code === 'ControlRight';
+
+  if (altShift || ctrlShift) {
+   
+    state.lang = state.lang === 'en' ? 'ru' : 'en';
+    render(state, keyboard);
+  }
+
   render(state, keyboard);
 });
 
 board.addEventListener('mousedown', (event) => {
   const { target: { id } } = event;
+
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
     state.isShifted = !state.isShifted;
     render(state, keyboard);
   }
+
 });
 
 board.addEventListener('mouseup', (event) => {
@@ -104,6 +116,8 @@ board.addEventListener('mouseup', (event) => {
     state.isShifted = !state.isShifted;
     render(state, keyboard);
   }
+
+  
 });
 
 board.addEventListener('mousedown', (e) => {
