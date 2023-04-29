@@ -38,8 +38,16 @@ keys.forEach((row) => {
 
 const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
+
 const textFeild = document.createElement('textarea');
 textFeild.classList.add('field');
-keyboard.append(textFeild, board);
+
+const wrapper = document.createElement('div');
+wrapper.classList.add('wrapper');
+const btn = document.createElement('button');
+btn.classList.add('wrapper-button');
+wrapper.append(btn, textFeild);
+
+keyboard.append(wrapper, board);
 
 export default keyboard;

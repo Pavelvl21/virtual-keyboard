@@ -41,6 +41,7 @@ const render = (state, keyboard) => {
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
   textField.focus();
+  textField.scrollTop = textField.scrollHeight;
 
   const {
     pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys,
@@ -94,6 +95,7 @@ const render = (state, keyboard) => {
     Tab,
     Enter,
   };
+  
   const actions = {
     Backspace: (textField) => handleBackspace(textField),
     Delete: (textField) => handleDel(textField),
