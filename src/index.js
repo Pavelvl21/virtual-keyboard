@@ -1,3 +1,4 @@
+import './assets/style.css';
 import render from './renders/render';
 import keyboard from './components/keyboard';
 
@@ -9,6 +10,7 @@ const board = keyboard.querySelector('.board');
 const state = {
   lang: 'en',
   pressedKey: {},
+  pressedKeys: new Set(),
   isCapsLock: false,
   isShifted: false,
 };
@@ -47,13 +49,18 @@ body.addEventListener('keydown', (event) => {
     state.isCapsLock = !state.isCapsLock;
   }
 
+  state.pressedKeys.add(code);
+
   render(state, keyboard);
 });
 
 body.addEventListener('keyup', (event) => {
   const { shiftKey } = event;
+  state.pressedKey = {};
+  state.pressedKeys.delete(event.code);
+  render(state, keyboard);
+
   if (!shiftKey && state.isShifted) {
-    state.pressedKey = {}
     state.isShifted = false;
     render(state, keyboard);
   }
@@ -71,6 +78,23 @@ board.addEventListener('click', (event) => {
   }
 
   render(state, keyboard);
+});
+
+board.addEventListener('mousedown', (event) => {
+  const { target: { id } } = event;
+  if (id === 'ShiftLeft' || id === 'ShiftRight') {
+    state.isShifted = !state.isShifted;
+    render(state, keyboard);
+  }
+});
+
+board.addEventListener('mouseup', (event) => {
+  const { target: { id } } = event;
+
+  if (id === 'ShiftLeft' || id === 'ShiftRight') {
+    state.isShifted = !state.isShifted;
+    render(state, keyboard);
+  }
 });
 
 board.addEventListener('mousedown', (e) => {
