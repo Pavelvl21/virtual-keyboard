@@ -16,13 +16,16 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new ESLintPlugin(),
+    // new ESLintPlugin(),
   ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/i,
         loader: 'babel-loader',
+        resolve: {
+          fullySpecified: false,
+        },
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
