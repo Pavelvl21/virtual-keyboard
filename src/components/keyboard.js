@@ -14,17 +14,15 @@ const renderArrows = (row, block, key) => {
   block.append(renderKey(key));
   row.append(block);
   return block;
-}
+};
 
 keys.forEach((row) => {
   const keybordRow = document.createElement('div');
   keybordRow.classList.add('row');
   const arrows = document.createElement('div');
   arrows.classList.add('arrows');
-  
+
   row.forEach((key) => {
-
-
     key.includes('Arrow')
       ? renderArrows(keybordRow, arrows, key)
       : keybordRow.append(renderKey(key));
@@ -32,7 +30,7 @@ keys.forEach((row) => {
     //   arrows.append(renderKey(key));
     //   keybordRow.append(arrows)
     // }
-    
+
     // keybordRow.append(renderKey(key));
   });
   board.append(keybordRow);
