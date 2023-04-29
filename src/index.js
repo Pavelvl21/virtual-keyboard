@@ -35,8 +35,13 @@ body.addEventListener('keydown', (event) => {
     location,
     metaKey,
   } = event;
+  
+  if (code) {
+    state.pressedKey = { code, key };
+    state.pressedKeys.add(code);
+  }
 
-  state.pressedKey = { code, key };
+  
 
   const exclusion = !event.repeat && location === 1 && !metaKey;
   const ctrlShift = ctrlKey && shiftKey && exclusion;
@@ -58,7 +63,7 @@ body.addEventListener('keydown', (event) => {
     state.isCapsLock = !state.isCapsLock;
   }
 
-  state.pressedKeys.add(code);
+  
 
   render(state, keyboard);
 });
