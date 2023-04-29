@@ -59,7 +59,6 @@ const keys = [
     'Comma',
     'Period',
     'Slash',
-    'ArrowUp',
     'ShiftRight',
   ],
   [
@@ -69,6 +68,7 @@ const keys = [
     'Space',
     'AltRight',
     'ArrowLeft',
+    'ArrowUp',
     'ArrowDown',
     'ArrowRight',
     'ControlRight',
