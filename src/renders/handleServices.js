@@ -1,6 +1,6 @@
 const addSymbols = (textField, cursorPosition, seporator) => {
   const { selectionStart, value } = textField;
-  const arr = value.split('')
+  const arr = value.split('');
   const head = arr.slice(0, selectionStart);
   const tail = arr.slice(selectionStart);
   const text = head
@@ -21,7 +21,7 @@ const deleteSymbols = (textField, cursorPosition) => {
 
   textField.value = text;
   textField.setSelectionRange(cursorPosition, cursorPosition);
-}
+};
 
 const getData = (textField) => {
   const { value, selectionStart } = textField;
@@ -50,8 +50,7 @@ const handleEnter = (textField) => {
     .slice(0, selectionStart);
   const cursorPosition = head.length + 1;
   const seporator = '\n';
-  addSymbols(textField, cursorPosition, seporator)
-
+  addSymbols(textField, cursorPosition, seporator);
 };
 
 const handleTab = (textField) => {
@@ -62,7 +61,7 @@ const handleTab = (textField) => {
   const seporator = '  ';
   const cursorPosition = head.length + seporator.length;
 
-  addSymbols(textField, cursorPosition, seporator)
+  addSymbols(textField, cursorPosition, seporator);
 };
 
 const hadleLeftArrow = (textField) => {
@@ -73,7 +72,7 @@ const hadleLeftArrow = (textField) => {
 
 const hadleRightArrow = (textField) => {
   const { selectionStart, value } = textField;
-  const length = value.length;
+  const { length } = value;
   const cursorPosition = selectionStart === length ? length : selectionStart + 1;
   textField.setSelectionRange(cursorPosition, cursorPosition);
 };
@@ -82,9 +81,9 @@ const hadleDownArrow = (textField) => {
   const [data, splittedData] = getData(textField);
   const rowPosition = splittedData.length;
   const colPosition = splittedData[rowPosition - 1]?.length || null;
-  const length = data
+  const { length } = data
     .slice(0, rowPosition)
-    .join('\n').length; //sliced by rowPosition data length
+    .join('\n'); // sliced by rowPosition data length
   const nextRowLength = data[rowPosition]?.length || null;
   const nextCursorPosition = nextRowLength <= colPosition
     ? nextRowLength + length + 1
@@ -97,12 +96,12 @@ const hadleUpArrow = (textField) => {
   const [data, splittedData] = getData(textField);
   const rowPosition = splittedData.length - 1;
   const colPosition = splittedData[rowPosition].length;
-  const length = data.slice(0, rowPosition).join('\n').length; //sliced by rowPosition data length
+  const { length } = data.slice(0, rowPosition).join('\n'); // sliced by rowPosition data length
   const prevRowLength = data[rowPosition - 1]?.length || null;
   const nextCursorPosition = prevRowLength >= colPosition ? length - prevRowLength + colPosition : length;
 
   textField.setSelectionRange(nextCursorPosition, nextCursorPosition);
-}
+};
 
 export {
   handleBackspace,

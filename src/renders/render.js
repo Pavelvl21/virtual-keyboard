@@ -1,6 +1,4 @@
-
 import locales from '../locales/locales';
-console.log(locales)
 import {
   handleBackspace,
   handleDel,
@@ -10,11 +8,15 @@ import {
   hadleRightArrow,
   hadleDownArrow,
   hadleUpArrow,
-} from './handleServices'
+} from './handleServices';
+
+console.log(locales);
 
 const getKey = (code, lang, isCapsLock, isShifted) => {
-  const isAvalible = (coll, code) => coll.hasOwnProperty(code); //avalible symbol to shift or caps lock
-  const chars = { ...locales[lang].keys, ...locales[lang].digits, ...locales.digits, ...locales.services };
+  const isAvalible = (coll, code) => coll.hasOwnProperty(code); // avalible symbol to shift or caps lock
+  const chars = {
+    ...locales[lang].keys, ...locales[lang].digits, ...locales.digits, ...locales.services,
+  };
   const shifted = { ...locales[lang].keys, ...locales[lang].shifted, ...locales.shifted };
   const { keys } = locales[lang];
   const char = chars[code];
@@ -36,29 +38,27 @@ const getKey = (code, lang, isCapsLock, isShifted) => {
 };
 
 const render = (state, keyboard) => {
-
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
-  textField.focus()
+  textField.focus();
 
-
-  const { pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys } = state;
-
+  const {
+    pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys,
+  } = state;
 
   buttons.forEach((btn) => {
     const key = getKey(btn.id, lang, isCapsLock, isShifted);
     btn.textContent = key;
-    btn.classList.remove('active')
+    btn.classList.remove('active');
   });
 
   const keys = [...pressedKeys];
-  
+
   keys.forEach((key) => {
     const btn = keyboard.querySelector(`#${key}`);
-    btn.classList.add('active')
-  })
+    btn.classList.add('active');
+  });
 
- 
   const { services } = locales;
 
   const char = getKey(code, lang, isCapsLock, isShifted) ?? '';
@@ -66,16 +66,14 @@ const render = (state, keyboard) => {
 
   const caps = keyboard.querySelector('#CapsLock');
 
-
-  isCapsLock ? caps.classList.add('higlight') : caps.classList.remove('higlight')
-
+  isCapsLock ? caps.classList.add('higlight') : caps.classList.remove('higlight');
 
   const {
     selectionStart,
     selectionEnd,
   } = textField;
 
-  textField.setRangeText(value, selectionStart, selectionEnd, "end");
+  textField.setRangeText(value, selectionStart, selectionEnd, 'end');
 
   const {
     Backspace,
