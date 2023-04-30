@@ -2,22 +2,39 @@ import './assets/style.css';
 import render from './renders/render';
 import renderField from './renders/renderField';
 import keyboard from './components/keyboard';
+import footer from './components/footer';
+import setLang from './renders/setLang';
+import getLang from './renders/getLang';
+
 
 const { body } = document;
-body.append(keyboard);
+body.classList.add('body');
+body.append(keyboard, footer);
 
 const board = keyboard.querySelector('.board');
 const closeBtn = keyboard.querySelector('.wrapper-button');
 const field = keyboard.querySelector('.wrapper');
 
+const lang = getLang();
+
+
+
 const state = {
-  lang: 'en',
+  lang,
   pressedKey: {},
   pressedKeys: new Set(),
   isCapsLock: false,
   isShifted: false,
-  isOpen: true,
+  isOpen: false,
 };
+
+
+
+renderField(state, field)
+setTimeout(() => {
+  state.isOpen = true;
+  renderField(state, field);
+}, 1000);
 
 closeBtn.addEventListener('click', () => {
   state.isOpen = !state.isOpen;
@@ -49,6 +66,7 @@ body.addEventListener('keydown', (event) => {
 
   if (ctrlShift || altShift) {
     state.lang = state.lang === 'en' ? 'ru' : 'en';
+    setLang(state.lang);
   }
 
   const shift = shiftKey && !event.repeat && !ctrlShift && !altShift;
@@ -84,7 +102,7 @@ board.addEventListener('click', (event) => {
   const { target } = event;
   const key = target.textContent;
   const code = target.id;
-  console.log(code)
+
   state.pressedKey = { code, key };
   const capsLock = code === 'CapsLock' && !event.repeat;
 
@@ -98,6 +116,7 @@ board.addEventListener('click', (event) => {
   if (altShift || ctrlShift) {
    
     state.lang = state.lang === 'en' ? 'ru' : 'en';
+    setLang(state.lang);
     render(state, keyboard);
   }
 
@@ -128,5 +147,5 @@ board.addEventListener('mouseup', (event) => {
 board.addEventListener('mousedown', (e) => {
   e.preventDefault();
 });
-
+;
 render(state, keyboard);

@@ -10,7 +10,7 @@ import {
   hadleUpArrow,
 } from './handleServices';
 
-console.log(locales);
+
 
 const getKey = (code, lang, isCapsLock, isShifted) => {
   const isAvalible = (coll, code) => coll.hasOwnProperty(code); // avalible symbol to shift or caps lock
@@ -38,20 +38,36 @@ const getKey = (code, lang, isCapsLock, isShifted) => {
 };
 
 const render = (state, keyboard) => {
+
+
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
   textField.focus();
   textField.scrollTop = textField.scrollHeight;
 
+  
   const {
     pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys,
   } = state;
+
+
 
   buttons.forEach((btn) => {
     const key = getKey(btn.id, lang, isCapsLock, isShifted);
     btn.textContent = key;
     btn.classList.remove('active');
   });
+
+  
+
+  
+    
+
+
+
+
+
+
 
   const keys = [...pressedKeys];
 
