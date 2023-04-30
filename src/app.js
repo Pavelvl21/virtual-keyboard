@@ -67,6 +67,11 @@ const handleClick = (event) => {
 const handleMouseDown = (event) => {
   const { target: { id } } = event;
 
+  if (id) {
+    state.pressedKeys.add(id);
+  }
+
+
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
     state.isShifted = !state.isShifted;
     render(state, keyboard);
@@ -75,6 +80,7 @@ const handleMouseDown = (event) => {
 
 const handleMouseUp = (event) => {
   const { target: { id } } = event;
+  state.pressedKeys.delete(id);
 
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
     state.isShifted = !state.isShifted;
@@ -128,7 +134,7 @@ const handleKeyDown = (event) => {
 const handleKeyUp = (event) => {
   const { code } = event;
   state.pressedKey = {};
-  state.pressedKeys.delete(event.code);
+  state.pressedKeys.delete(code);
   render(state, keyboard);
 
   const shiftKey = code === 'ShiftLeft' || code === 'ShiftRight';
