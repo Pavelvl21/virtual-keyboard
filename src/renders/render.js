@@ -1,13 +1,13 @@
-import locales from './locales/locales';
-import handleBackspace from './handlesProcesses/handleBackspace';
-import handleDel from './handlesProcesses/handleDel';
-import handleEnter from './handlesProcesses/handleEnter';
-import handleTab from './handlesProcesses/handleTab';
-import handleLeftArrow from './handlesProcesses/handleLeftArrow';
-import handleRightArrow from './handlesProcesses/handleRightArrow';
-import handleDownArrow from './handlesProcesses/handleDownArrow';
-import handleUpArrow from './handlesProcesses/handleUpArrow';
-import getKey from './utils/getKey';
+import locales from '../locales/locales';
+import renderBackspace from './renderBackspace';
+import renderDel from './renderDel';
+import renderEnter from './renderEnter';
+import renderTab from './renderTab';
+import renderLeftArrow from './renderLeftArrow';
+import renderRightArrow from './renderRightArrow';
+import renderDownArrow from './renderDownArrow';
+import renderUpArrow from './renderUpArrow';
+import getKey from '../utils/getKey';
 
 const render = (state, keyboard) => {
 
@@ -25,11 +25,6 @@ const render = (state, keyboard) => {
     btn.textContent = key;
     btn.classList.remove('active');
   });
-
-  
-
-  
-    
 
 
 
@@ -81,14 +76,14 @@ const render = (state, keyboard) => {
   };
   
   const actions = {
-    Backspace: (textField) => handleBackspace(textField),
-    Delete: (textField) => handleDel(textField),
-    Enter: (textField) => handleEnter(textField),
-    Tab: (textField) => handleTab(textField),
-    ArrowLeft: (textField) => handleLeftArrow(textField),
-    ArrowRight: (textField) => handleRightArrow(textField),
-    ArrowDown: (textField) => handleDownArrow(textField),
-    ArrowUp: (textField) => handleUpArrow(textField),
+    Backspace: (textField) => renderBackspace(textField),
+    Delete: (textField) => renderDel(textField),
+    Enter: (textField) => renderEnter(textField),
+    Tab: (textField) => renderTab(textField),
+    ArrowLeft: (textField) => renderLeftArrow(textField),
+    ArrowRight: (textField) => renderRightArrow(textField),
+    ArrowDown: (textField) => renderDownArrow(textField),
+    ArrowUp: (textField) => renderUpArrow(textField),
   };
 
   textServices.hasOwnProperty(code) ? actions[code](textField) : '';
