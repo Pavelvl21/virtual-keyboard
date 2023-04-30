@@ -192,6 +192,10 @@ transition: all 0.35s;
 
 }
 
+.key:hover {
+  cursor: pointer;
+}
+
 
 
 
