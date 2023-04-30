@@ -1,5 +1,5 @@
 import './assets/style.css';
-import render from './renders/render';
+import render from './render';
 import handleField from './handlesProcesses/handleField';
 import keyboard from './components/keyboard';
 import footer from './components/footer';
