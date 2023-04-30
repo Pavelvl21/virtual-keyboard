@@ -1,11 +1,10 @@
 import './assets/style.css';
 import render from './renders/render';
-import renderField from './renders/renderField';
+import handleField from './handlesProcesses/handleField';
 import keyboard from './components/keyboard';
 import footer from './components/footer';
-import setLang from './renders/setLang';
-import getLang from './renders/getLang';
-import getData from './renders/getData';
+
+import getData from './handlesProcesses/utils/getData';
 
 
 const { body } = document;
@@ -16,13 +15,22 @@ const board = keyboard.querySelector('.board');
 const closeBtn = keyboard.querySelector('.wrapper-button');
 const field = keyboard.querySelector('.wrapper');
 
-const lang = getLang();
 
 const setCarret = (keyboard, state) => {
   const textarea = keyboard.querySelector('.field');
   const { splittedData } = getData(textarea);
   state.carretPosition = (splittedData.length - 1) * 18;
 } 
+
+const setLang = (lang) => {
+  const locale = { lang };
+  localStorage.setItem('locale', JSON.stringify(locale));
+};
+
+
+const { lang } = localStorage.length === 0
+  ? { lang: 'en' }
+  : JSON.parse(localStorage.getItem('locale'));
 
 const state = {
   lang,
@@ -36,15 +44,15 @@ const state = {
 
 
 
-renderField(state, field)
+handleField(state, field)
 setTimeout(() => {
   state.isOpen = true;
-  renderField(state, field);
+  handleField(state, field);
 }, 1000);
 
 closeBtn.addEventListener('click', () => {
   state.isOpen = !state.isOpen;
-  renderField(state, field)
+  handleField(state, field)
 })
 
 body.addEventListener('keydown', (event) => {
