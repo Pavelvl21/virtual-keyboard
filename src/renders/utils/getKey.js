@@ -1,3 +1,5 @@
+import locales from '../../locales/locales';
+
 const getKey = (code, lang, isCapsLock, isShifted) => {
   const isAvalible = (coll, code) => coll.hasOwnProperty(code); // avalible symbol to shift or caps lock
   const chars = {

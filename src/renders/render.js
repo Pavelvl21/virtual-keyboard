@@ -7,7 +7,7 @@ import renderLeftArrow from './renderLeftArrow';
 import renderRightArrow from './renderRightArrow';
 import renderDownArrow from './renderDownArrow';
 import renderUpArrow from './renderUpArrow';
-import getKey from '../utils/getKey';
+import getKey from './utils/getKey';
 
 const render = (state, keyboard) => {
 
