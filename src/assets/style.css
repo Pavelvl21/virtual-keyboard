@@ -68,7 +68,8 @@
   width: 90px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  border: 0px;
+  border: 2px solid #BDBDBD;
+  border-top: 0;
   background-color: #FFFFFF;
   background-image: url('./icons/arrowDown.svg');
   background-repeat: no-repeat;
