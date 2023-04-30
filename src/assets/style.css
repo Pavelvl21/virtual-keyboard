@@ -4,16 +4,71 @@
 
 }
 
+.body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 572px 15px;
+  background-color: #BDBDBD;
+  color: #212121;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.footer {
+  margin: 0 auto;
+  text-align: center;
+ 
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.description {
+  font-size: 0.9rem;
+}
 /* #5c868d */
 .keyboard {
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #BDBDBD;
-  height: 100vh;
+  
+  /* height: 100vh; */
   justify-content: center;
+
   
   
+}
+
+
+.author-info {
+  position: absolute;
+    bottom: 70%;
+ opacity: 0;
+
+}
+.hidden+.author-info {
+  transition: all 0.35s;
+
+  opacity: 1;
+
+}
+
+.link {
+  text-decoration: none;
+  font-weight: 700;
+  color: #212121;
+}
+.link:hover {
+
+  color: #03A9F4;
+}
+.link:active {
+
+  color: #212121;
 }
 
 .wrapper {
@@ -41,17 +96,17 @@
   border-bottom-right-radius: 30px;
   border: 0px;
   background-color: #FFFFFF;
-  background-image: url('./icons/arrowDown-primary.svg');
+  background-image: url('./icons/arrowDown.svg');
     background-repeat: no-repeat;
   background-position: center; 
 }
 
 .wrapper-button:hover {
-  background-image: url('./icons/arrowDown.svg');
+  background-image: url('./icons/arrowDown-primary.svg');
 }
 
 .wrapper-button:active {
-  background-image: url('./icons/arrowDown-primary.svg');
+  background-image: url('./icons/arrowDown.svg');
 }
 
 .wrapper-button:hover {
@@ -60,6 +115,8 @@
 
 
 .field {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
   
   padding: 20px;
 resize: none;
@@ -68,6 +125,7 @@ min-height: 200px;
 outline: none;
 border-color: #FFFFFF;
 transition: all 0.35s;
+
 }
 
 .hidden {
@@ -75,19 +133,21 @@ transition: all 0.35s;
   transform: translateY(100%);  
 }
 .hidden .wrapper-button {
-  background-image: url('./icons/arrowUp-primary.svg');
+  background-image: url('./icons/arrowUp.svg');
 }
 
 .hidden .wrapper-button:hover {
-  background-image: url('./icons/arrowUp.svg');
+  background-image: url('./icons/arrowUp-primary.svg');
 }
 .hidden .wrapper-button:active {
-  background-image: url('./icons/arrowUp-primary.svg');
+  background-image: url('./icons/arrowUp.svg');
 }
 
 .hidden-field {
   visibility: hidden;
   opacity: 0;
+  background-color: #BDBDBD;
+    border-color: #BDBDBD;
   
 }
 
@@ -126,11 +186,14 @@ transition: all 0.35s;
   height: 50px;
   border-radius: 10px;
   border: none;
-  color: #212121;
+  
   font-weight: 700;
   background-color: #FFFFFF;
-  transition: all 0.15s;
+
 }
+
+
+
 
 #Backspace {
   width: 128px;
@@ -324,7 +387,6 @@ transition: all 0.35s;
 .active {
   border: 1px solid #BDBDBD;
   color: #757575;
-  /* transform: scale(0.96); */
 }
 #MetaLeft:active,
 .active#MetaLeft  {

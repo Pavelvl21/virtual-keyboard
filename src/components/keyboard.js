@@ -35,9 +35,23 @@ keys.forEach((row) => {
   });
   board.append(keybordRow);
 });
+const main = document.createElement('main');
+main.classList.add('main');
 
 const keyboard = document.createElement('section');
 keyboard.classList.add('keyboard');
+
+const author = document.createElement('div');
+author.classList.add('author-info');
+const span = document.createElement('span');
+span.textContent = 'creeted by ';
+const a = document.createElement('a');
+a.classList.add('link');
+a.setAttribute('href', 'https://github.com/Pavelvl21');
+a.setAttribute('target', '_blank');
+a.setAttribute('name', 'author');
+a.textContent = 'Pavel Yudenka';
+author.append(span, a);
 
 const textFeild = document.createElement('textarea');
 textFeild.classList.add('field');
@@ -48,6 +62,8 @@ const btn = document.createElement('button');
 btn.classList.add('wrapper-button');
 wrapper.append(btn, textFeild);
 
-keyboard.append(wrapper, board);
+keyboard.append(wrapper, author, board);
 
-export default keyboard;
+main.append(keyboard)
+
+export default main;
