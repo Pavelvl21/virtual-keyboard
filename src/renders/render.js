@@ -1,15 +1,12 @@
 import locales from '../locales/locales';
-import {
-  handleBackspace,
-  handleDel,
-  handleEnter,
-  handleTab,
-  hadleLeftArrow,
-  hadleRightArrow,
-  hadleDownArrow,
-  hadleUpArrow,
-} from './handleServices';
-
+import handleBackspace from '../handlesProcesses/handleBackspace';
+import handleDel from '../handlesProcesses/handleDel';
+import handleEnter from '../handlesProcesses/handleEnter';
+import handleTab from '../handlesProcesses/handleTab';
+import handleLeftArrow from '../handlesProcesses/handleLeftArrow';
+import handleRightArrow from '../handlesProcesses/handleRightArrow';
+import handleDownArrow from '../handlesProcesses/handleDownArrow';
+import handleUpArrow from '../handlesProcesses/handleUpArrow';
 
 
 const getKey = (code, lang, isCapsLock, isShifted) => {
@@ -117,10 +114,10 @@ const render = (state, keyboard) => {
     Delete: (textField) => handleDel(textField),
     Enter: (textField) => handleEnter(textField),
     Tab: (textField) => handleTab(textField),
-    ArrowLeft: (textField) => hadleLeftArrow(textField),
-    ArrowRight: (textField) => hadleRightArrow(textField),
-    ArrowDown: (textField) => hadleDownArrow(textField),
-    ArrowUp: (textField) => hadleUpArrow(textField),
+    ArrowLeft: (textField) => handleLeftArrow(textField),
+    ArrowRight: (textField) => handleRightArrow(textField),
+    ArrowDown: (textField) => handleDownArrow(textField),
+    ArrowUp: (textField) => handleUpArrow(textField),
   };
 
   textServices.hasOwnProperty(code) ? actions[code](textField) : '';
