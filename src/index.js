@@ -5,6 +5,7 @@ import keyboard from './components/keyboard';
 import footer from './components/footer';
 import setLang from './renders/setLang';
 import getLang from './renders/getLang';
+import getData from './renders/getData';
 
 
 const { body } = document;
@@ -17,7 +18,11 @@ const field = keyboard.querySelector('.wrapper');
 
 const lang = getLang();
 
-
+const setCarret = (keyboard, state) => {
+  const textarea = keyboard.querySelector('.field');
+  const { splittedData } = getData(textarea);
+  state.carretPosition = (splittedData.length - 1) * 18;
+} 
 
 const state = {
   lang,
@@ -26,6 +31,7 @@ const state = {
   isCapsLock: false,
   isShifted: false,
   isOpen: false,
+  carretPosition: 0,
 };
 
 
@@ -82,7 +88,7 @@ body.addEventListener('keydown', (event) => {
   }
 
   
-
+  setCarret(keyboard, state)
   render(state, keyboard);
 });
 
@@ -120,6 +126,8 @@ board.addEventListener('click', (event) => {
     render(state, keyboard);
   }
 
+  
+  setCarret(keyboard, state)
   render(state, keyboard);
 });
 
@@ -130,6 +138,7 @@ board.addEventListener('mousedown', (event) => {
     state.isShifted = !state.isShifted;
     render(state, keyboard);
   }
+  
 
 });
 
@@ -139,6 +148,7 @@ board.addEventListener('mouseup', (event) => {
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
     state.isShifted = !state.isShifted;
     render(state, keyboard);
+    
   }
 
   

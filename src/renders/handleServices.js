@@ -1,3 +1,5 @@
+import getData from './getData';
+
 const addSymbols = (textField, cursorPosition, seporator) => {
   const { selectionStart, value } = textField;
   const arr = value.split('');
@@ -23,14 +25,7 @@ const deleteSymbols = (textField, cursorPosition) => {
   textField.setSelectionRange(cursorPosition, cursorPosition);
 };
 
-const getData = (textField) => {
-  const { value, selectionStart } = textField;
-  const data = value.split('\n');
-  const splittedData = value
-    .substring(0, selectionStart)
-    .split('\n'); // last symbol before cursor
-  return [data, splittedData];
-};
+
 
 const handleBackspace = (textField) => {
   const { selectionStart } = textField;
@@ -78,7 +73,7 @@ const hadleRightArrow = (textField) => {
 };
 
 const hadleDownArrow = (textField) => {
-  const [data, splittedData] = getData(textField);
+  const { data, splittedData } = getData(textField);
   const rowPosition = splittedData.length;
   const colPosition = splittedData[rowPosition - 1]?.length || null;
   const { length } = data
@@ -93,7 +88,7 @@ const hadleDownArrow = (textField) => {
 };
 
 const hadleUpArrow = (textField) => {
-  const [data, splittedData] = getData(textField);
+  const { data, splittedData } = getData(textField);
   const rowPosition = splittedData.length - 1;
   const colPosition = splittedData[rowPosition].length;
   const { length } = data.slice(0, rowPosition).join('\n'); // sliced by rowPosition data length

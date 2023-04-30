@@ -43,9 +43,9 @@ const render = (state, keyboard) => {
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
   textField.focus();
-  textField.scrollTop = textField.scrollHeight;
+  textField.scrollTop = state.carretPosition;
 
-  
+  console.log(textField.scrollHeight)
   const {
     pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys,
   } = state;
