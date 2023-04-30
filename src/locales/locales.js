@@ -5,7 +5,7 @@ const locales = {
   en,
   ru,
   services: {
-    AltRight: 'atl',
+    AltRight: 'alt',
     ControlRight: 'ctrl',
     Backspace: '',
     Enter: '',
