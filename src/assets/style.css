@@ -93,7 +93,7 @@
 .field {
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 20px;
+  padding: 18px 20px;
   resize: none;
   min-width: 660px;
   min-height: 200px;
