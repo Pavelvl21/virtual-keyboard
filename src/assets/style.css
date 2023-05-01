@@ -50,7 +50,7 @@
 .link:active {
   color: #212121;
 }
-.wrapper :not(.hidden) + .author-info {
+:not(.hidden) + .author-info {
   display: none;
 }
 
