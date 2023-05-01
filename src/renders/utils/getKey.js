@@ -1,7 +1,9 @@
 import locales from '../../locales/locales';
 
+// avalible symbol to shift or caps lock
+const isAvalible = (coll, code) => Object.hasOwn(coll, code);
+
 const getKey = (code, lang, isCapsLock, isShifted) => {
-  const isAvalible = (coll, code) => coll.hasOwnProperty(code); // avalible symbol to shift or caps lock
   const chars = {
     ...locales[lang].keys, ...locales[lang].digits, ...locales.digits, ...locales.services,
   };
@@ -11,9 +13,6 @@ const getKey = (code, lang, isCapsLock, isShifted) => {
   const key = keys[code];
   const shiftedChar = shifted[code];
 
-  if (!isCapsLock && !isShifted) {
-    return char;
-  }
   if (isCapsLock && isShifted) {
     return isAvalible(shifted, code) ? shiftedChar.toLowerCase() : char;
   }
@@ -23,6 +22,8 @@ const getKey = (code, lang, isCapsLock, isShifted) => {
   if (isShifted) {
     return isAvalible(shifted, code) ? shiftedChar.toUpperCase() : char;
   }
+
+  return char;
 };
 
 export default getKey;
