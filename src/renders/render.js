@@ -1,4 +1,5 @@
 import locales from '../locales/locales';
+import dataKeys from '../data/keys';
 import renderBackspace from './renderBackspace';
 import renderDel from './renderDel';
 import renderEnter from './renderEnter';
@@ -13,7 +14,7 @@ const render = (state, keyboard) => {
   const textField = keyboard.querySelector('.field');
   const buttons = keyboard.querySelectorAll('.key');
   textField.focus();
-  textField.scrollTop = state.carretPosition;
+  textField.scrollTop = state.caretPosition;
 
   const {
     pressedKey: { code }, lang, isCapsLock, isShifted, pressedKeys,
@@ -28,8 +29,10 @@ const render = (state, keyboard) => {
 
   const keys = [...pressedKeys];
   keys.forEach((key) => {
-    const btn = keyboard.querySelector(`#${key}`);
-    btn.classList.add('active');
+    if (dataKeys.flat().includes(key)) {
+      const btn = keyboard.querySelector(`#${key}`);
+      btn.classList.add('active');
+    }    
   });
 
   const { services } = locales;
