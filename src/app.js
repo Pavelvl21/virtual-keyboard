@@ -74,7 +74,7 @@ const handleMouseDown = (event) => {
     || code === 'ControlRight';
 
   const ctrlAlt = alt && ctrl;
-  if (ctrlAlt) {
+  if (ctrlAlt && [...state.pressedKeys].length === 2) {
     state.lang = state.lang === 'en' ? 'ru' : 'en';
     renderStorageLang(state.lang);
     render(state, keyboard);
@@ -102,7 +102,6 @@ const handleMouseUp = (event) => {
 const mouseout = ({ target: { id } }) => {
   if (id) {
     state.pressedKeys.delete(id);
-    render(state, keyboard);
   }
 };
 
