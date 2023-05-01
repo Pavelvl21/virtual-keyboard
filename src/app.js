@@ -13,9 +13,8 @@ const board = keyboard.querySelector('.board');
 const closeBtn = keyboard.querySelector('.wrapper-button');
 const field = keyboard.querySelector('.wrapper');
 
-const { lang } = localStorage.length === 0
-  ? { lang: 'en' }
-  : JSON.parse(localStorage.getItem('locale'));
+const storage = JSON.parse(localStorage.getItem('locale'));
+const { lang } = !storage ? { lang: 'en' } : storage;
 
 const state = {
   lang,
@@ -47,18 +46,29 @@ const handleClick = (event) => {
   state.pressedKey = { code, key };
   const capsLock = code === 'CapsLock' && !event.repeat;
 
+
+
   if (capsLock) {
     state.isCapsLock = !state.isCapsLock;
   }
 
-  const altShift = state.isShifted && code === 'AltLeft' || state.isShifted && code === 'AltRight';
-  const ctrlShift = state.isShifted && code === 'ControlLeft' || state.isShifted && code === 'ControlRight';
+  // const alt = 'AltLeft' || 'AltRight';
+  // const shift = 'ShiftLeft' || 'ShiftRight';
+  // const ctrl = 'ControlLeft' || 'ControlRight';
+  // const altShift = alt && shift;
+  // const ctrlShift = ctrl && shift;
 
-  if (altShift || ctrlShift) {
-    state.lang = state.lang === 'en' ? 'ru' : 'en';
-    renderCaretPosition(state.lang);
-    render(state, keyboard);
-  }
+
+
+
+
+
+
+  // const altShift = state.isShifted && code === 'AltLeft' || state.isShifted && code === 'AltRight';
+  // const ctrlShift = state.isShifted && code === 'ControlLeft' || state.isShifted && code === 'ControlRight';
+ 
+
+ 
 
   renderCaretPosition(keyboard, state)
   render(state, keyboard);
@@ -66,10 +76,22 @@ const handleClick = (event) => {
 
 const handleMouseDown = (event) => {
   const { target: { id } } = event;
-
   if (id) {
     state.pressedKeys.add(id);
   }
+  const { pressedKey, pressedKeys } = state;
+  const { code } = pressedKey;
+ 
+  const alt = pressedKeys.has('AltLeft') || pressedKeys.has('AltRight') || code === 'AltLeft' || code === 'AltRight';
+  const ctrl = pressedKeys.has('ControlLeft') || pressedKeys.has('ControlRight') || code === 'ControlLeft' || code === 'ControlRight';
+
+  const ctrlAlt = alt && ctrl;
+  if (ctrlAlt) {
+    state.lang = state.lang === 'en' ? 'ru' : 'en';
+    renderStorageLang(state.lang);
+    render(state, keyboard);
+  }
+
 
 
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
@@ -80,7 +102,12 @@ const handleMouseDown = (event) => {
 
 const handleMouseUp = (event) => {
   const { target: { id } } = event;
-  state.pressedKeys.delete(id);
+  if (id) {
+    
+    state.pressedKeys.delete(id);
+    render(state, keyboard);
+  }
+  
 
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
     state.isShifted = !state.isShifted;
@@ -90,32 +117,40 @@ const handleMouseUp = (event) => {
 
 
 const handleKeyDown = (event) => {
-  event.preventDefault();
   const {
     code,
     key,
     altKey,
     ctrlKey,
     shiftKey,
-    location,
-    metaKey,
+    // location,
+    // metaKey,
   } = event;
 
   if (code) {
     state.pressedKey = { code, key };
     state.pressedKeys.add(code);
+    event.preventDefault();
   }
+  const { pressedKeys } = state;
 
-  const exclusion = !event.repeat && location === 1 && !metaKey;
-  const ctrlShift = ctrlKey && shiftKey && exclusion;
-  const altShift = altKey && shiftKey && exclusion;
 
-  if (ctrlShift || altShift) {
+  // const exclusion = !event.repeat && location === 1 && !metaKey;
+  // const ctrlShift = ctrlKey && shiftKey && exclusion;
+  // const altShift = altKey && shiftKey && exclusion;
+
+  const alt = pressedKeys.has('AltLeft') || pressedKeys.has('AltRight') || altKey;
+  const ctrl = pressedKeys.has('ControlLeft') || pressedKeys.has('ControlRight') || ctrlKey;
+
+  const ctrlAlt = !event.repeat && alt && ctrl;
+  if (ctrlAlt) {
     state.lang = state.lang === 'en' ? 'ru' : 'en';
     renderStorageLang(state.lang);
+    render(state, keyboard);
   }
 
-  const shift = shiftKey && !event.repeat && !ctrlShift && !altShift;
+
+  const shift = shiftKey && !event.repeat;
 
   if (shift) {
     state.isShifted = true;
@@ -145,6 +180,13 @@ const handleKeyUp = (event) => {
   }
 };
 
+const mouseout = ({ target: { id } }) => {
+  if (id) {
+    state.pressedKeys.delete(id);
+    render(state, keyboard);
+  }
+};
+
 const app = () => {  
   closeBtn.addEventListener('click', handleClickBtn);
   board.addEventListener('click', handleClick);
@@ -152,6 +194,7 @@ const app = () => {
   board.addEventListener('mouseup', handleMouseUp);
   body.addEventListener('keydown', handleKeyDown);
   body.addEventListener('keyup', handleKeyUp);
+  keyboard.addEventListener('mouseout', mouseout)
   
   render(state, keyboard);
 };

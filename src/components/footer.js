@@ -7,7 +7,7 @@ title.textContent = 'Windows 10 Keyboard';
 
 const description = document.createElement('h2');
 description.classList.add('description');
-description.textContent = `To change the Keyboard Language press "alt" + "shift" or "ctrl" + "shift"`;
+description.textContent = `To change the Keyboard Language use "alt" + "ctrl" keys`;
 
 footer.append(title, description);
 
