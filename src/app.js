@@ -90,7 +90,6 @@ const handleMouseUp = (event) => {
   const { target: { id } } = event;
   if (id) {
     state.pressedKeys.delete(id);
-    render(state, keyboard);
   }
 
   if (id === 'ShiftLeft' || id === 'ShiftRight') {
