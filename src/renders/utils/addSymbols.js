@@ -1,4 +1,5 @@
-const addSymbols = (textField, cursorPosition, seporator) => {
+const addSymbols = (field, cursorPosition, seporator) => {
+  const textField = field;
   const { selectionStart, value } = textField;
   const arr = value.split('');
   const head = arr.slice(0, selectionStart);

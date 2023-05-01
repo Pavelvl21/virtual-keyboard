@@ -4,9 +4,12 @@ const renderUpArrow = (textField) => {
   const { data, splittedData } = getData(textField);
   const rowPosition = splittedData.length - 1;
   const colPosition = splittedData[rowPosition].length;
-  const { length } = data.slice(0, rowPosition).join('\n'); //rows length before current
+  // rows length before current
+  const { length } = data.slice(0, rowPosition).join('\n');
   const prevRowLength = data[rowPosition - 1]?.length || null;
-  const nextCursorPosition = prevRowLength >= colPosition ? length - prevRowLength + colPosition : length;
+  const nextCursorPosition = prevRowLength >= colPosition
+    ? length - prevRowLength + colPosition
+    : length;
 
   textField.setSelectionRange(nextCursorPosition, nextCursorPosition);
 };

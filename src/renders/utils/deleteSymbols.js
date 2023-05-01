@@ -1,4 +1,5 @@
-const deleteSymbols = (textField, cursorPosition) => {
+const deleteSymbols = (field, cursorPosition) => {
+  const textField = field;
   const { value } = textField;
   const text = value
     .split('')

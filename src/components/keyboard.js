@@ -23,15 +23,11 @@ keys.forEach((row) => {
   arrows.classList.add('arrows');
 
   row.forEach((key) => {
-    key.includes('Arrow')
-      ? renderArrows(keybordRow, arrows, key)
-      : keybordRow.append(renderKey(key));
-    // if (key.includes('Arrow')) {
-    //   arrows.append(renderKey(key));
-    //   keybordRow.append(arrows)
-    // }
-
-    // keybordRow.append(renderKey(key));
+    if (key.includes('Arrow')) {
+      renderArrows(keybordRow, arrows, key);
+    } else {
+      keybordRow.append(renderKey(key));
+    }
   });
   board.append(keybordRow);
 });
@@ -64,6 +60,6 @@ wrapper.append(btn, textFeild);
 
 keyboard.append(wrapper, author, board);
 
-main.append(keyboard)
+main.append(keyboard);
 
 export default main;
