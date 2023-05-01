@@ -32,7 +32,7 @@ const render = (state, keyboard) => {
     if (dataKeys.flat().includes(key)) {
       const btn = keyboard.querySelector(`#${key}`);
       btn.classList.add('active');
-    }    
+    }
   });
 
   const { services } = locales;

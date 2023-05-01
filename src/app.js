@@ -24,7 +24,7 @@ const state = {
   isCapsLock: false,
   isShifted: false,
   isOpen: false,
-  carretPosition: 0,
+  caretPosition: 0,
 };
 
 // render the field in closed state
