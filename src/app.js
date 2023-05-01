@@ -113,6 +113,8 @@ const handleKeyDown = (event) => {
     altKey,
     ctrlKey,
     shiftKey,
+    location,
+    metaKey,
   } = event;
 
   if (code) {
@@ -122,9 +124,11 @@ const handleKeyDown = (event) => {
   }
 
   const { pressedKeys } = state;
+  const exclusionsLocation = location === 1 || location === 2;
+  const exclusion = exclusionsLocation && !metaKey && !shiftKey;
   const alt = pressedKeys.has('AltLeft') || pressedKeys.has('AltRight') || altKey;
   const ctrl = pressedKeys.has('ControlLeft') || pressedKeys.has('ControlRight') || ctrlKey;
-  const ctrlAlt = !event.repeat && alt && ctrl;
+  const ctrlAlt = !event.repeat && alt && ctrl && exclusion;
   if (ctrlAlt) {
     state.lang = state.lang === 'en' ? 'ru' : 'en';
     renderStorageLang(state.lang);
