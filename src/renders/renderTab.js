@@ -5,7 +5,7 @@ const renderTab = (textField) => {
   const head = value
     .split('')
     .slice(0, selectionStart);
-  const seporator = '    ';
+  const seporator = '\t';
   const cursorPosition = head.length + seporator.length;
 
   addSymbols(textField, cursorPosition, seporator);
