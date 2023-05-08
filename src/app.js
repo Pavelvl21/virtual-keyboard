@@ -54,6 +54,7 @@ const handleClick = (event) => {
 
   renderCaretPosition(keyboard, state);
   render(state, keyboard);
+  state.pressedKey = {};
 };
 
 const handleMouseDown = (event) => {
