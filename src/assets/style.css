@@ -1,0 +1,392 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 572px 15px;
+  background-color: #BDBDBD;
+  color: #212121;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.keyboard {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+}
+
+.author-info {
+  position: absolute;
+  bottom: 70%;
+  opacity: 0;
+}
+
+.hidden + .author-info {
+  transition: all 0.35s;
+  opacity: 1;
+}
+
+
+
+.link {
+  text-decoration: none;
+  font-weight: 700;
+  color: #212121;
+  transition: all 0.15s;
+}
+
+.link:hover {
+  color: #03A9F4;
+  transition: all 0.15s;
+}
+
+.link:active {
+  color: #212121;
+}
+:not(.hidden) + .author-info {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 20px 20px;
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid #FFFFFF;
+  border-bottom: 0;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  transition: all 0.35s;
+}
+
+.wrapper-button {
+  height: 15px;
+  width: 90px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 2px solid #BDBDBD;
+  border-top: 0;
+  background-color: #FFFFFF;
+  background-image: url('./icons/arrowDown.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.wrapper-button:hover {
+  background-image: url('./icons/arrowDown-primary.svg');
+}
+
+.wrapper-button:active {
+  background-image: url('./icons/arrowDown.svg');
+}
+
+.wrapper-button:hover {
+  cursor: pointer;
+}
+
+.field {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 18px 20px;
+  resize: none;
+  min-width: 660px;
+  min-height: 200px;
+  outline: none;
+  border-color: #FFFFFF;
+  transition: all 0.35s;
+}
+
+.hidden {
+  border-color: rgba(0, 0, 0, 0);
+  transform: translateY(100%);
+}
+
+.hidden .wrapper-button {
+  background-image: url('./icons/arrowUp.svg');
+}
+
+.hidden .wrapper-button:hover {
+  background-image: url('./icons/arrowUp-primary.svg');
+}
+
+.hidden .wrapper-button:active {
+  background-image: url('./icons/arrowUp.svg');
+}
+
+.hidden-field {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #BDBDBD;
+  border-color: #BDBDBD;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(5, 50px);
+  gap: 3px;
+  align-items: center;
+  width: 817px;
+  border: 3px solid #FFFFFF;
+  border-radius: 30px;
+  padding: 2px;
+}
+
+.row {
+  display: flex;
+  gap: 3px;
+  height: 100%;
+}
+
+.arrows {
+  display: grid;
+  gap: 3px;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 25px)
+}
+
+.key {
+  grid-row: 1/2;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  background-color: #FFFFFF;
+}
+
+.key:hover {
+  cursor: pointer;
+}
+
+#Backspace {
+  width: 128px;
+  border-top-right-radius: 25px;
+}
+
+#Backquote {
+  border-top-left-radius: 25px;
+}
+
+#Tab {
+  width: 75px;
+}
+
+#CapsLock {
+  width: 101px;
+}
+
+#Enter {
+  width: 130px;
+}
+
+#ShiftLeft {
+  width: 129px;
+}
+
+#ShiftRight {
+  width: 155px;
+}
+
+#ControlLeft {
+  width: 65px;
+  border-bottom-left-radius: 25px;
+  text-align: left;
+  padding: 10px;
+}
+
+#Space {
+  width: 363px;
+}
+
+#ControlRight {
+  width: 65px;
+  border-bottom-right-radius: 25px;
+  text-align: right;
+  padding: 10px;
+}
+
+#ArrowUp,
+#ArrowDown {
+  grid-column: 2;
+  height: 22px;
+}
+
+#ArrowUp {
+  grid-row: 1;
+  background-image: url('./icons/arrowUp-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 22px;
+}
+
+.active#ArrowUp,
+#ArrowUp:active {
+  background-image: url('./icons/arrowUp.svg');
+}
+
+#ArrowDown {
+  grid-row: 2;
+  background-image: url('./icons/arrowDown-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.active#ArrowDown,
+#ArrowDown:active {
+  background-image: url('./icons/arrowDown.svg');
+}
+
+#ArrowLeft {
+  grid-row: 2;
+  background-image: url('./icons/arrowLeft-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.active#ArrowLeft,
+#ArrowLeft:active {
+  background-image: url('./icons/arrowLeft.svg');
+}
+
+#ArrowRight {
+  grid-row: 2;
+  background-image: url('./icons/arrowRight-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.active#ArrowRight,
+#ArrowRight:active {
+  background-image: url('./icons/arrowRight.svg');
+}
+
+#ArrowLeft,
+#ArrowRight {
+  grid-row: 2 / 2;
+  height: 22px;
+}
+
+#MetaLeft {
+  background-image: url('./icons/win-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#Enter {
+  background-image: url('./icons/enter-primary.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+}
+
+.active#Enter,
+#Enter:active {
+  background-image: url('./icons/enter.svg');
+}
+
+#ShiftRight,
+#ShiftLeft {
+  background-image: url('./icons/shift-primary.svg');
+  background-repeat: no-repeat;
+}
+
+.active#ShiftRight,
+#ShiftRight:active,
+.active#ShiftLeft,
+#ShiftLeft:active {
+  background-image: url('./icons/shift.svg');
+}
+
+#ShiftLeft {
+  background-position: calc(10px);
+}
+
+#ShiftRight {
+  background-position: calc(100% - 10px);
+}
+
+#Tab {
+  background-image: url('./icons/tab-primary.svg');
+  background-repeat: no-repeat;
+  background-position: calc(10px);
+}
+
+.active#Tab,
+#Tab:active {
+  background-image: url('./icons/tab.svg');
+}
+
+#Backspace {
+  background-image: url('./icons/backspace-primary.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+}
+
+.active#Backspace,
+#Backspace:active {
+  background-image: url('./icons/backspace.svg');
+}
+
+#CapsLock {
+  text-align: left;
+  padding: 0 10px;
+}
+
+#Delete {
+  text-align: right;
+  padding: 10px;
+}
+
+.key:active,
+.active {
+  border: 1px solid #BDBDBD;
+  color: #757575;
+}
+
+#MetaLeft:active,
+.active#MetaLeft {
+  background-image: url('./icons/win.svg');
+}
+
+.higlight,
+#CapsLock:active,
+.active#CapsLock,
+#Delete:active,
+.active#Delete,
+#ControlRight:active,
+.active#ControlRight,
+#ControlLeft:active,
+.active#ControlLeft,
+#AltRight:active,
+.active#AltRight,
+#AltLeft:active,
+.active#AltLeft {
+  color: #03A9F4;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.description {
+  font-size: 0.8rem;
+}
