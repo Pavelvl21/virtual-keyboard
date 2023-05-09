@@ -40,7 +40,7 @@ keyboard.classList.add('keyboard');
 const author = document.createElement('div');
 author.classList.add('author-info');
 const span = document.createElement('span');
-span.textContent = 'creeted by ';
+span.textContent = 'created by ';
 const a = document.createElement('a');
 a.classList.add('link');
 a.setAttribute('href', 'https://github.com/Pavelvl21');
